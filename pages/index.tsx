@@ -1,10 +1,33 @@
 /** @format */
 
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 
-const Home: NextPage = () => {
+import prisma from "../lib/prisma";
+
+interface PostInterface {
+  title: String;
+}
+
+interface Props {
+  posts: [PostInterface];
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await prisma.post.findMany({
+    // where: { published: true },
+    include: {
+      author: {
+        select: { name: true },
+      },
+    },
+  });
+
+  return { props: { posts } };
+};
+
+const Home: NextPage = ({ posts }) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -28,7 +51,10 @@ const Home: NextPage = () => {
         </p>
 
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
+          {posts.map(({ title }: { title: string }) => (
+            <div key={title}>{title}</div>
+          ))}
+          {/* <a
             href="https://nextjs.org/docs"
             className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
           >
@@ -66,7 +92,7 @@ const Home: NextPage = () => {
             <p className="mt-4 text-xl">
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
-          </a>
+          </a> */}
         </div>
       </main>
 
