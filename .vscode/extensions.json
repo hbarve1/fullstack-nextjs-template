@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "coenraads.bracket-pair-colorizer",
+    "dbaeumer.vscode-eslint",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "kumar-harsh.graphql-for-vscode",
+    "mhutchie.git-graph",
+    "mikestead.dotenv",
+    "ms-vscode.vscode-typescript-next",
+    "orta.vscode-jest",
+    "prisma.prisma",
+    "wayou.vscode-todo-highlight"
+  ]
+}
